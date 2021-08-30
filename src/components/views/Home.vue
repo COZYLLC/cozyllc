@@ -141,14 +141,14 @@
             <div id="inner">
               <div class="columns" style="text-align: left; font-size: 2.5vh">
                 <div class="column" style="">
-                  <p>유한책임회사 코지</p>
-                  <p>사업자등록번호 : 619-88-02154</p>
-                  <p>충청북도 진천군 덕산읍 대하로 114 102동 502호</p>
+                  <p>{{ info.name }}</p>
+                  <p>사업자등록번호 : {{ info.corpno }}</p>
+                  <p>{{ info.address }}</p>
                 </div>
                 <div class="column">
-                  <p>전화문의 : 010-4809-8358</p>
-                  <p>이메일 : chiwon0923@cozyllc.co.kr</p>
-                  <p>FAX : 0508-941-8358</p>
+                  <p>전화문의 : {{ info.tel }}</p>
+                  <p>이메일 : {{ info.email }}</p>
+                  <p>FAX : {{ info.fax }}</p>
                 </div>
               </div>
             </div>
@@ -164,6 +164,7 @@
 <script>
 import members from "../../members.json";
 import products from "../../products/products.json";
+import info from "../../info.json";
 export default {
   data() {
     return {
@@ -188,6 +189,7 @@ export default {
       },
       products: products,
       members: members,
+      info: info,
     };
   },
   methods: {

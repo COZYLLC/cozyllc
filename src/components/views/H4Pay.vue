@@ -68,7 +68,7 @@ export default {
       player: null,
       prevStep: null,
       options: {
-        scrollBar:true,
+        scrollBar: true,
         sectionsColor: [
           "#41b883",
           "#ff5f45",
