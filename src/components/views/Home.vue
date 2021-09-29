@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <div id="mn">
-      <ul id="menu">
+      <!--<ul id="menu">
         <li>
           <a href="/">
             <img src="@/assets/cozy.png" style="width: 100px; margin: 20px" />
           </a>
         </li>
-      </ul>
+      </ul>-->
+
+      <Navbar />
     </div>
 
     <full-page
@@ -51,7 +53,7 @@
             <h3 class="names">Who We Are?</h3>
           </div>
         </div>
-        <div class="slide" v-for="member in members" :key="member">
+        <div class="slide" v-for="(member, i) in members" :key="i">
           <div id="wrap">
             <div
               class="columns is-multiline"
@@ -67,8 +69,7 @@
                 <img
                   :src="require(`@/assets/members/${member.img}`)"
                   :alt="`${member.name} 사진`"
-                  style="width: 20vh"
-                  :rounded="rounded"
+                  style="width: 20vh; border-radius: 50%"
                 />
               </div>
               <div class="column">
@@ -93,7 +94,7 @@
             <h3 class="names">Our Services</h3>
           </div>
         </div>
-        <div class="slide" v-for="product in products" :key="product">
+        <div class="slide" v-for="(product, i) in products" :key="i">
           <div id="wrap">
             <div
               class="columns is-multiline"
@@ -109,8 +110,7 @@
                 <img
                   :src="require(`@/assets/product/h4pay/${product.img}`)"
                   :alt="`${product.name} 이미지`"
-                  style="width: 20vh"
-                  :rounded="rounded"
+                  style="width: 20vh; border-radius: 50%"
                 />
                 <h1 class="names">{{ product.name }}</h1>
                 <h1 class="prodDesc">{{ product.description }}</h1>
@@ -165,7 +165,11 @@
 import members from "../../members.json";
 import products from "../../products/products.json";
 import info from "../../info.json";
+import Navbar from "../Navbar.vue";
 export default {
+  components: {
+    Navbar,
+  },
   data() {
     return {
       options: {

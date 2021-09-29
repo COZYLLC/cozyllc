@@ -59,7 +59,7 @@
   </div>
 </template>
 <script>
-import sections from "../../products/h4pay.json";
+import sections from "@/products/h4pay.json";
 export default {
   data() {
     return {
