@@ -1,282 +1,193 @@
 <template>
-  <div class="home">
-    <div id="mn">
-      <!--<ul id="menu">
-        <li>
-          <a href="/">
-            <img src="@/assets/cozy.png" style="width: 100px; margin: 20px" />
-          </a>
-        </li>
-      </ul>-->
-
-      <Navbar />
-    </div>
-
-    <full-page
-      ref="fullpage"
-      :options="options"
-      id="fullpage"
-      style="z-index: 1; position: fixed"
+  <div>
+    <div
+      style="
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+      "
     >
-      <div class="section">
-        <div
-          class="container is-vcentered"
-          style="display: flex; margin: auto; width: fit-content; height: 80vh"
-        >
-          <div class="columns is-centered" style="margin: auto">
-            <div class="column is-narrow">
-              <p class="names">창의 Creative</p>
-              <p class="names">기회 Opportunity</p>
-              <p class="names">매력 Zingy</p>
-              <p class="names">젊음 Youth</p>
-            </div>
-            <div class="column is-narrow">
-              <p class="names">보다 편안한</p>
-              <p class="names">생활을 위해</p>
-              <p class="names">새로운 것을</p>
-              <p class="names">만듭니다</p>
-            </div>
-          </div>
-        </div>
+      <img
+        :src="require('@/assets/photo.png')"
+        style="
+          height: 100vh;
+          width: 100vw;
+          object-fit: cover;
+          z-index: -1;
+          position: absolute;
+          filter: brightness(0.6);
+        "
+      />
+      <div class="slogan-group">
+        <p>교육이 기술의 발전을<br />따라갈 수 있도록.</p>
+        <Button text="자세히 알아보기" :onClick="aboutClick" />
       </div>
-      <div class="section">
-        <div class="slide">
-          <div
-            class="container"
-            style="
-              text-align: center;
-              width: 100vw;
-              display: flex;
-              height: 80vh;
-            "
-          >
-            <h3 class="names">Who We Are?</h3>
-          </div>
-        </div>
-        <div class="slide" v-for="(member, i) in members" :key="i">
-          <div id="wrap">
-            <div
-              class="columns is-multiline"
-              id="inner"
-              style="
-                display: flex;
-                justify-content: center;
-                padding-top: 0vh;
-                width: fit-content;
-              "
-            >
-              <div class="column">
-                <img
-                  :src="require(`@/assets/members/${member.img}`)"
-                  :alt="`${member.name} 사진`"
-                  style="width: 20vh; border-radius: 50%"
-                />
-              </div>
-              <div class="column">
-                <h1 class="names">{{ member.position }}</h1>
-                <h1 class="names" style="font-size: 3vh">
-                  {{ member.name }} {{ member.engname }}
-                </h1>
-                <h1 class="names" style="font-size: 2.3vh">
-                  {{ member.work }}
-                </h1>
-              </div>
+    </div>
+    <b-carousel>
+      <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
+        <section :class="`hero is-medium is-${carousel.color}`">
+          <div class="product-area" data-aos="fade">
+            <div class="product-text">
+              <p class="title">{{ carousel.title }}</p>
+              <p>
+                {{ carousel.text }}
+              </p>
+              <b-button
+                rounded
+                style="width: 150px; margin-top: 10px"
+                @click="pushTo(carousel.route)"
+                >자세히 알아보기</b-button
+              >
             </div>
+            <video
+              class="product-media"
+              :src="require('@/assets/product/h4pay/vid1.mp4')"
+            />
           </div>
+        </section>
+      </b-carousel-item>
+    </b-carousel>
+    <div class="notice-area">
+      <h1 class="title is-8 notice-title">COZY 소식</h1>
+      <div class="notice-post" v-for="notice in notices" :key="notice.id">
+        <div class="notice-info">
+          <router-link :to="`/notice/${notice.id}`">
+            {{ notice.title }}</router-link
+          ><span> {{ getMonthDayDate(notice.date) }}</span>
         </div>
+        <hr class="solid" />
       </div>
-      <div class="section">
-        <div class="slide">
-          <div
-            class="container"
-            style="text-align: center; width: 90vw; display: flex; height: 80vh"
-          >
-            <h3 class="names">Our Services</h3>
-          </div>
-        </div>
-        <div class="slide" v-for="(product, i) in products" :key="i">
-          <div id="wrap">
-            <div
-              class="columns is-multiline"
-              id="inner"
-              style="
-                display: flex;
-                justify-content: center;
-                padding-top: 0vh;
-                width: 80vw;
-              "
-            >
-              <div class="column is-narrow">
-                <img
-                  :src="require(`@/assets/product/h4pay/${product.img}`)"
-                  :alt="`${product.name} 이미지`"
-                  style="width: 20vh; border-radius: 50%"
-                />
-                <h1 class="names">{{ product.name }}</h1>
-                <h1 class="prodDesc">{{ product.description }}</h1>
-                <h1 class="prodCategory">분야: {{ product.category }}</h1>
-                <br />
-                <router-link :to="`H4Pay`" style="color: white">
-                  자세히 알아보기
-                  <vue-fontawesome :icon="['fas', 'arrow-circle-right']" />
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div id="subscribe-area">
+      <div>
+        <p class="title is-8">뉴스레터 구독 신청</p>
+        <p class="subtitle is-8">
+          COZY의 소식을 이메일로 받아보실 수 있습니다.
+        </p>
       </div>
-      <div class="section">
-        <div class="slide">
-          <div
-            class="container"
-            style="
-              text-align: center;
-              width: 100vw;
-              display: flex;
-              justify-content: center;
-              float: center;
-            "
-            id="wrap"
-          >
-            <div id="inner">
-              <div class="columns" style="text-align: left; font-size: 2.5vh">
-                <div class="column" style="">
-                  <p>{{ info.name }}</p>
-                  <p>사업자등록번호 : {{ info.corpno }}</p>
-                  <p>{{ info.address }}</p>
-                </div>
-                <div class="column">
-                  <p>전화문의 : {{ info.tel }}</p>
-                  <p>이메일 : {{ info.email }}</p>
-                  <p>FAX : {{ info.fax }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </full-page>
-    <div class="floatingLeader">
-      <vue-fontawesome :icon="['fas', 'chevron-down']" />
+      <section class="subscribe-form">
+        <b-input type="email" rounded></b-input>
+        <b-button rounded>구독</b-button>
+      </section>
     </div>
   </div>
 </template>
+
 <script>
-import members from "../../members.json";
-import products from "../../products/products.json";
-import info from "../../info.json";
-import Navbar from "../Navbar.vue";
+import Button from "@/components/Button.vue";
 export default {
   components: {
-    Navbar,
+    Button,
   },
   data() {
     return {
-      options: {
-        afterLoad: this.afterLoad,
-        scrollOverflow: true,
-        scrollBar: true,
-        menu: "#menu",
-        navigation: false,
-        sectionsColor: [
-          "#41b883",
-          "#ff5f45",
-          "#0798ec",
-          "#fec401",
-          "#1bcee6",
-          "#ee1a59",
-          "#2c3e4f",
-          "#ba5be9",
-          "#b4b8ab",
-        ],
-        verticalCentered: true,
-      },
-      products: products,
-      members: members,
-      info: info,
+      carousels: [
+        {
+          title: "H4Pay",
+          text: "교내 매점의 온라인 결제 및 예약 시스템을 통해 펜데믹 상황에서도 매점 운영을 원활히 해줍니다.",
+          color: "primary",
+          route: "/product/h4pay",
+        },
+        { title: "Slide 2", text: "설명..", color: "light" },
+        { title: "Slide 3", text: "설명22...", color: "success" },
+        { title: "Slide 4", text: "설명333....", color: "warning" },
+        { title: "Slide 5", text: "설명4444...", color: "danger" },
+      ],
+      notices: [
+        {
+          id: 0,
+          title: "안녕하세요,",
+          content: "COZY LLC. 홈페이지를 찾아주셔서 감사합니다.",
+          date: "2021-05-23T05:23:00Z",
+        },
+      ],
     };
   },
   methods: {
-    afterLoad() {
-      console.log("After load");
+    pushTo(route) {
+      this.$router.push(route);
+    },
+    getMonthDayDate(date) {
+      const parsedDate = new Date(Date.parse(date));
+      console.log(parsedDate);
+      return `${parsedDate.getFullYear()}. ${parsedDate.getMonth() + 1}.`;
     },
   },
 };
 </script>
 
 <style>
-.floatingLeader {
-  position: absolute;
-  font-size: 1.5rem;
-  bottom: 5px;
-  right: 50vw;
-  z-index: 1;
-  color: white;
-}
-
-table {
-  border-spacing: 10vw;
-}
-
-.prodCategory {
-  color: white;
-  font-weight: 400;
-  margin: 0px;
-  font-size: 1.4vh;
-}
-
-.prodDesc {
-  color: white;
-  font-weight: 400;
-  margin: 0px;
-  font-size: 2vh;
-}
-
-.names {
-  color: white;
-  font-weight: bold;
-  font-size: 4vh;
-  margin: auto;
-}
-
-#wrap {
-  display: flex;
+.subscribe-area {
+  width: 60px;
   justify-content: center;
-  width: 100%;
-  height: 80vh;
+  padding: 10vh 15vw;
 }
-
-#inner {
-  align-self: center;
-  padding: 2rem;
+.notice-area {
+  padding: 10vh 15vw;
 }
-
-#mn {
-  position: fixed;
-  width: 100%;
-  top: 0px;
-  z-index: 2;
-  left: 0px;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
+.notice-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 0 10px;
 }
+.product-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  padding: 10vh 0;
+}
+.product-text {
+  width: 30vw;
+  margin-right: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.product-media {
+  width: 300px;
+  margin-left: 5vw;
+}
 
-a {
-  color: white;
-  text-decoration: none;
+.title {
+  font-size: 4.5vh;
   font-weight: bold;
 }
-.fp-controlArrow.fp-next {
-  border-width: 3vh 0 3vh 3vh;
+
+#app {
+  margin: 0px;
 }
-.fp-controlArrow.fp-prev {
-  border-width: 3vh 3vh 3vh 0;
+.slogan-group {
+  font-size: 4.5vh;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  bottom: 15vh;
+  text-align: center;
+}
+hr.solid {
+  background-color: grey;
+  height: 1px;
+  margin: 1rem 0;
+  display: block;
+  border: none;
+  width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+  .product-area {
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 10vh;
+  }
+  .product-media {
+    margin: 10vh 0;
+  }
+  .product-text {
+    margin: 0;
+    width: 100%;
+  }
 }
 </style>
