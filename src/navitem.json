@@ -1,22 +1,22 @@
 [
     {
-        "name": "홈",
-        "route": "/"
-    },
-    {
         "name": "회사 소개",
         "items": [
+            {
+                "name": "인사말",
+                "route": "/welcome"
+            },
             {
                 "name": "직원 소개",
                 "route": "/employee"
             },
             {
-                "name": "회사 목표",
+                "name": "목표",
                 "route": "/plan"
             },
             {
-                "name": "보도 자료",
-                "route": "/news"
+                "name": "회사 연혁",
+                "route": "/history"
             }
         ]
     },
@@ -26,6 +26,32 @@
             {
                 "name": "H4Pay",
                 "route": "/product/h4pay"
+            }
+        ]
+    },
+    {
+        "name": "회사 소식",
+        "items": [
+            {
+                "name": "공지사항",
+                "route": "/notice"
+            },
+            {
+                "name": "보도 자료",
+                "route": "/article"
+            }
+        ]
+    },
+    {
+        "name": "문의",
+        "items": [
+            {
+                "name": "문의하기",
+                "route": "/support"
+            },
+            {
+                "name": "교육 신청",
+                "route": "/edu"
             }
         ]
     }

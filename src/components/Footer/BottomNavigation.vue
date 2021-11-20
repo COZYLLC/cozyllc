@@ -30,5 +30,15 @@ export default {
 .col {
   display: flex;
   flex-direction: column;
+  margin-right: 30px;
+  text-align: left;
+}
+@media screen and (max-width: 767px) {
+  .cols {
+    display: inline;
+  }
+  .col {
+    margin-bottom: 10px;
+  }
 }
 </style>

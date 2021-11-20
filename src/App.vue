@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import Navbar from "@/components/Navbar.vue";
 export default {
   name: "app",
@@ -25,4 +25,11 @@ export default {
 * {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
+.page {
+  padding: 102px 20vw;
+}
+</style>
+
+<style lang="scss">
+@import "@/assets/scss/base.scss";
 </style>

@@ -21,7 +21,6 @@
           v-if="item.items != undefined"
           :label="item.name"
           hoverable
-          active
           collapsible
           style="color: white"
         >
@@ -47,7 +46,28 @@ export default {
   },
   watch: {
     $route(to) {
-      if (to.path != "/") {
+      this.setNavbarColor(to.path);
+    },
+  },
+  mounted() {
+    var route = this.$route.path;
+    this.setNavbarColor(route);
+    document.addEventListener("scroll", () => {
+      var scrollValue = document.documentElement.scrollTop;
+      const route = this.$route.path;
+      if (route == "/") {
+        if (scrollValue != 0) {
+          document.getElementById("navbar").style.background =
+            "rgba(0, 0, 0, 0.4)";
+        } else if (scrollValue == 0) {
+          document.getElementById("navbar").style.background = "transparent";
+        }
+      }
+    });
+  },
+  methods: {
+    setNavbarColor(path) {
+      if (path != "/") {
         window.document.getElementById("navbar").style.background = "black";
       } else {
         window.document.getElementById("navbar").style.background =
@@ -62,55 +82,22 @@ export default {
 #navbar {
   width: 100%;
   background-color: transparent;
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   top: 0;
-  padding: 0 20vw;
 }
 .navbar-burger {
   color: white !important;
 }
-a.navbar-link.is-active {
-  color: black !important;
-}
-a.navbar-item:focus,
-a.navbar-item:focus-within,
-a.navbar-item:hover,
-a.navbar-item.is-active,
-.navbar-link:focus,
-.navbar-link:focus-within,
-.navbar-link:hover,
-.navbar-link.is-active {
-  background-color: rgba(255, 255, 255, 0.4) !important;
-}
-a.navbar-item.navbar-image:hover,
-a.navbar-item.navbar-image:focus {
-  background-color: transparent !important;
-}
-
-a.navbar-link {
-  color: white !important;
-}
-a.navbar-item.router-link-exact-active.router-link-active {
-  color: white;
-}
-
 hr.solid {
   border: 0;
   opacity: 0.5;
-  border-top: 0.5px solid rgb(255, 255, 255);
+  border-top: 0.5px solid rgb(0, 0, 0);
   margin: 0 auto;
-  width: 10vh;
+  width: 88vw;
 }
 
 @media screen and (max-width: 1023px) {
-  hr.solid {
-    border: 0;
-    opacity: 0.5;
-    border-top: 0.5px solid rgb(0, 0, 0);
-    margin: 0 auto;
-    width: 88vw;
-  }
   #navbar {
     padding: 0 !important;
   }
@@ -120,9 +107,55 @@ hr.solid {
   a.navbar-item.router-link-exact-active.router-link-active {
     color: black;
   }
-  .navbar-menu.is-active {
-    background-color: rgba(255, 255, 255, 0.6);
-    filter: blur(10);
+}
+@media screen and (min-width: 1024px) {
+  a.navbar-link.is-active {
+    color: black !important;
   }
+  a.navbar-item:focus,
+  a.navbar-item:focus-within,
+  a.navbar-item:hover,
+  a.navbar-item.is-active,
+  .navbar-link:focus,
+  .navbar-link:focus-within,
+  .navbar-link:hover,
+  .navbar-link.is-active {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+  }
+  a.navbar-item.navbar-image:hover,
+  a.navbar-item.navbar-image:focus {
+    background-color: transparent !important;
+  }
+
+  a.navbar-link {
+    color: white !important;
+  }
+  a.navbar-item.router-link-exact-active.router-link-active {
+    color: #4f83d6;
+  }
+
+  .navbar-end {
+    align-items: center !important;
+  }
+
+  .navbar-dropdown a.navbar-item {
+    padding-right: 0 !important;
+  }
+  hr.solid {
+    margin: 0 auto !important;
+    opacity: 0.5;
+    width: 80% !important;
+  }
+  #navbar {
+    padding: 0 20vw;
+  }
+}
+.navbar-menu.is-active {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.6);
+  filter: blur(10);
+}
+.navbar-menu {
+  display: none;
 }
 </style>

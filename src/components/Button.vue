@@ -1,15 +1,15 @@
 <template>
   <b-button
     type="is-primary"
-    size="is-large"
+    size="is-medium"
     rounded
     style="margin-top: 3vh"
-    @click="onClick"
+    @click="onClick(params)"
     >{{ text }}</b-button
   >
 </template>
 <script>
 export default {
-  props: ["text", "onClick"],
+  props: ["text", "onClick", "params"],
 };
 </script>

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "송치원",
+    "engname": "Chiwon Song",
+    "position": "CEO",
+    "description": "기획 · 하드웨어",
+    "image": "scw.png"
+  },
+  {
+    "name": "김선은",
+    "engname": "Seoneun Kim",
+    "position": "CFO",
+    "description": "기획 · 회계",
+    "image": "kse.png"
+  },
+  {
+    "name": "최경민",
+    "engname": "Kyoungmin Choi",
+    "position": "CTO",
+    "description": "프로그램 개발",
+    "image": "ckm.png"
+  },
+  {
+    "name": "김현빈",
+    "engname": "Hyeonbin Kim",
+    "position": "CTO",
+    "description": "프로그램 개발",
+    "image": "khb.png"
+  },
+  {
+    "name": "홍선영",
+    "engname": "Seonyoung Hong",
+    "position": "CDO",
+    "description": "디자인",
+    "image": "hsy.png"
+  },
+  {
+    "name": "이석주",
+    "engname": "Seokju Lee",
+    "position": "CDO",
+    "description": "디자인",
+    "image": "lsj.png"
+  }
+]
