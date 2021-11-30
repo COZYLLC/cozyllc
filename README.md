@@ -1,4 +1,4 @@
-# cozyllc
+# COZY LLC. Business Website
 
 ## Project setup
 ```
