@@ -1,5 +1,5 @@
 module.exports = {
-  outputDir: "./dist2",
+  outputDir: "./dist",
   css: {
     loaderOptions: {
       sass: {
