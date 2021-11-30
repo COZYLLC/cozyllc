@@ -39,8 +39,10 @@ export default {
           image: "happy.png",
         },
         {
-          title:
-            "  3. 모든 고객이 새로운 기술을 모두가 경험할 수 있는 기회를 제공합니다.",
+          title: "3. 모든 고객이 새로운 기술을 습득할 수 있게 한다.",
+          text: [
+            "모든 고객에게 새로운 기술을 경험할 수 있는 기회를 제공합니다",
+          ],
           image: "experience.png",
         },
       ],
