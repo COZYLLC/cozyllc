@@ -18,18 +18,20 @@ export default {
   },
   methods: {
     getPosts() {
-      this.$axios.get(`/api/board/${this.category.name}/`).then((res) => {
-        if (res.status == 200) {
-          const newPost = [];
-          res.data.posts.forEach((post, idx) => {
-            post.idx = idx;
-            newPost.push(post);
-          });
-          this.posts = newPost;
-        } else {
-          alert("게시글을 불러오지 못했습니다!");
-        }
-      });
+      this.$axios
+        .get(`${process.env.VUE_APP_API_URL}/board/${this.category.name}/`)
+        .then((res) => {
+          if (res.status == 200) {
+            const newPost = [];
+            res.data.posts.forEach((post, idx) => {
+              post.idx = idx;
+              newPost.push(post);
+            });
+            this.posts = newPost;
+          } else {
+            alert("게시글을 불러오지 못했습니다!");
+          }
+        });
     },
   },
   data() {

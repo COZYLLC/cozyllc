@@ -41,11 +41,13 @@ export default {
   },
   methods: {
     getPost() {
-      this.$axios.get(`/api/board/post/${this.id}`).then((res) => {
-        if (res.status == 200) {
-          this.post = res.data.post;
-        }
-      });
+      this.$axios
+        .get(`${process.env.VUE_APP_API_URL}/board/post/${this.id}`)
+        .then((res) => {
+          if (res.status == 200) {
+            this.post = res.data.post;
+          }
+        });
     },
   },
 };

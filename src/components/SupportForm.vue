@@ -37,7 +37,7 @@ export default {
   methods: {
     submit() {
       this.$axios
-        .post(`/api/support`, this.form)
+        .post(`${process.env.VUE_APP_API_URL}/support`, this.form)
         .then((res) => {
           if (res.status == 200 && res.data.status) {
             alert("문의 접수가 완료되었습니다. 감사합니다.");
