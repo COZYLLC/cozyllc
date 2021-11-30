@@ -7,26 +7,26 @@
       :current-page.sync="currentPage"
       :pagination-simple="isPaginationSimple"
       :pagination-position="paginationPosition"
-      :default-sort-direction="defaultSortDirection"
+      default-sort-direction="desc"
       :pagination-rounded="isPaginationRounded"
       :sort-icon="sortIcon"
       :sort-icon-size="sortIconSize"
-      default-sort="user.first_name"
+      default-sort="idx"
       aria-next-label="Next page"
       aria-previous-label="Previous page"
       aria-page-label="Page"
       aria-current-label="Current page"
     >
       <b-table-column
-        field="id"
-        width="60"
+        field="idx"
+        width="80"
         label="번호"
         sortable
         numeric
         centered
         v-slot="props"
       >
-        {{ props.row.id }}
+        {{ props.row.idx }}
       </b-table-column>
 
       <b-table-column field="title" label="제목" sortable v-slot="props">
@@ -60,7 +60,6 @@ export default {
       isPaginationSimple: false,
       isPaginationRounded: false,
       paginationPosition: "bottom",
-      defaultSortDirection: "asc",
       sortIcon: "arrow-up",
       sortIconSize: "is-small",
       currentPage: 1,

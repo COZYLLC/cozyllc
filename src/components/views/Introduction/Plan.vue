@@ -28,7 +28,7 @@ export default {
             "기술 개발과 고객의 믿음을 원칙으로 합니다.",
             "새로운 기술과 믿음의 조화를 통해 소비자와 신뢰를 쌓습니다.",
           ],
-          image: "trust.jpg",
+          image: "trust.png",
         },
         {
           title: "2. 매력적이고 즐거운 서비스를 생산합니다.",
@@ -36,12 +36,12 @@ export default {
             "고객이 배움의 즐거움과 신기술에 흥미를 느낄 수 있는 서비스를 창출합니다.",
             "동종업계에서 가장 매력적인 서비스를 만듭니다.",
           ],
-          image: "happy.jpg",
+          image: "happy.png",
         },
         {
           title:
             "  3. 모든 고객이 새로운 기술을 모두가 경험할 수 있는 기회를 제공합니다.",
-          image: "experience.jpg",
+          image: "experience.png",
         },
       ],
     };
@@ -58,25 +58,17 @@ export default {
 .subtitle {
   margin-bottom: 0 !important;
 }
-.product-area {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  padding: 0;
-}
-.product-text {
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.product-media {
-  width: 300px;
-  margin: 0;
-}
 .product-title {
   font-size: 2.5vh;
   font-weight: bold;
+}
+</style>
+<style scoped>
+.product-area {
+  padding: 5vh 0;
+}
+.product-media {
+  width: 200px;
+  height: 200px;
 }
 </style>

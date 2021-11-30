@@ -26,6 +26,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from "axios";
 
 library.add(
   faArrowCircleRight,
@@ -50,6 +51,8 @@ ConfigProgrammatic.setOptions({
   defaultIconPack: "fas",
   defaultIconComponent: "vue-fontawesome",
 });
+
+Vue.prototype.$axios = axios;
 
 new Vue({
   created() {

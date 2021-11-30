@@ -77,23 +77,6 @@ export default {
 .subtitle {
   margin-bottom: 0 !important;
 }
-.product-area {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  padding: 0;
-}
-.product-text {
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.product-media {
-  width: 300px;
-  margin: 0;
-}
 .product-title {
   font-size: 2.5vh;
   font-weight: bold;

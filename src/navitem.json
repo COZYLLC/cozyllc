@@ -11,6 +11,10 @@
                 "route": "/employee"
             },
             {
+                "name": "캐릭터 소개",
+                "route": "/character"
+            },
+            {
                 "name": "목표",
                 "route": "/plan"
             },
@@ -51,7 +55,7 @@
             },
             {
                 "name": "교육 신청",
-                "route": "/edu"
+                "route": "/support/education"
             }
         ]
     }

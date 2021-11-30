@@ -14,45 +14,18 @@ export default {
     PostList,
   },
   created() {
-    //this.getPosts(); API link
-    this.posts = [
-      {
-        id: 0,
-        title: "hi",
-        date: new Date(),
-      },
-      {
-        id: 0,
-        title: "hi",
-        date: new Date(),
-      },
-      {
-        id: 0,
-        title: "hi",
-        date: new Date(),
-      },
-      {
-        id: 0,
-        title: "hi",
-        date: new Date(),
-      },
-      {
-        id: 0,
-        title: "hi",
-        date: new Date(),
-      },
-      {
-        id: 0,
-        title: "hi",
-        date: new Date(),
-      },
-    ];
+    this.getPosts();
   },
   methods: {
     getPosts() {
-      this.$axios.get(`/api/post/${this.category.name}/`).then((res) => {
-        if (res.statusCode == 200) {
-          this.posts = res.data.posts;
+      this.$axios.get(`/api/board/${this.category.name}/`).then((res) => {
+        if (res.status == 200) {
+          const newPost = [];
+          res.data.posts.forEach((post, idx) => {
+            post.idx = idx;
+            newPost.push(post);
+          });
+          this.posts = newPost;
         } else {
           alert("게시글을 불러오지 못했습니다!");
         }

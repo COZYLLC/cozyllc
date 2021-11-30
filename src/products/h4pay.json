@@ -10,13 +10,14 @@
     "vid": "h4pay/vid2.mp4"
   },
   {
-    "paragraph1": "대량 선물",
-    "paragraph2": "교사의 디지털 매점 쿠폰 선물로 불편은 최소로, 지구 수명은 최대로",
+    "paragraph1": "선물",
+    "paragraph2": "친구와의 우정을 표현하는 또 하나의 방법",
     "vid": "h4pay/vid3.mp4"
   },
   {
-    "paragraph1": "선물",
-    "paragraph2": "친구와의 우정을 표현하는 또 하나의 방법",
-    "vid": "h4pay/vid4.mp4"
+    "paragraph1": "대량 선물",
+    "paragraph2": "교사의 디지털 매점 쿠폰 선물로 불편은 최소로, 지구 수명은 최대로",
+    "vid": "h4pay/vid4.mp4",
+    "maxSize": true
   }
 ]

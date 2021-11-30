@@ -1,58 +1,51 @@
 <template>
   <div class="test">
-    <full-page
-      ref="fullpage"
-      :options="options"
-      id="fullpage"
-      style="z-index: 1; position: fixed"
-    >
-      <div class="section">
-        <div class="container is-vcentered">
-          <div class="columns" style="margin: 0 5vw">
-            <div class="column" style="display: flex">
-              <img
-                style="width: 20vh; margin: 0 auto"
-                :src="require('@/assets/product/h4pay/H4pay.png')"
-              />
-            </div>
-            <div class="column">
+    <div class="section" style="height: 100vh">
+      <div class="columns">
+        <div class="column" style="margin-right: 10vw">
+          <img
+            style="width: 20vh; margin: auto; filter: brightness(0)"
+            :src="require('@/assets/product/h4pay/H4pay.png')"
+          />
+        </div>
+        <div class="column">
+          <div>
+            <p class="title">H4Pay</p>
+            <p class="title is-2">간편한 결제,<br />안전한 수령</p>
+            <p class="title is-4">학교 온라인 매점 결제 서비스</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" v-for="(section, i) in sections" :key="i">
+      <div class="container" data-aos="fade">
+        <div class="columns">
+          <div class="column">
+            <div class="paragraph" style="margin: 0 5vw">
               <div>
-                <p class="title" style="color: white">H4Pay</p>
-                <p class="title is-2" style="color: white">
-                  간편한 결제, 안전한 수령
+                <p style="font-size: 2.5rem; font-weight: bold">
+                  {{ section.paragraph1 }}
                 </p>
-                <p class="title is-4" style="color: white">
-                  학교 온라인 매점 결제 서비스
+                <p>
+                  {{ section.paragraph2 }}
                 </p>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="section" v-for="(section, i) in sections" :key="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="paragraph" style="margin: 0 5vw">
-                <div>
-                  <p style="font-size: 2.5rem; font-weight: bold">
-                    {{ section.paragraph1 }}
-                  </p>
-                  <p>
-                    {{ section.paragraph2 }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <video :id="`player${i + 1}`" muted="muted" autoplay loop>
-                <source :src="require(`@/assets/product/${section.vid}`)" />
-              </video>
-            </div>
+          <div class="column">
+            <video
+              :id="`player${i + 1}`"
+              muted="muted"
+              autoplay
+              loop
+              :style="section.maxSize ? '' : 'width: 20vh'"
+            >
+              <source :src="require(`@/assets/product/${section.vid}`)" />
+            </video>
           </div>
         </div>
       </div>
-    </full-page>
+    </div>
     <div class="floatingLeader">
       <vue-fontawesome :icon="['fas', 'chevron-down']" />
     </div>
@@ -63,26 +56,6 @@ import sections from "@/products/h4pay.json";
 export default {
   data() {
     return {
-      currStep: null,
-      currStepProgress: null,
-      player: null,
-      prevStep: null,
-      options: {
-        scrollBar: true,
-        sectionsColor: [
-          "#41b883",
-          "#ff5f45",
-          "#0798ec",
-          "#fec401",
-          "#1bcee6",
-          "#ee1a59",
-          "#2c3e4f",
-          "#ba5be9",
-          "#b4b8ab",
-        ],
-        onLeave: this.onLeave,
-        verticalCentered: true,
-      },
       sections: sections,
     };
   },
@@ -110,14 +83,22 @@ export default {
   bottom: 5px;
   right: 50vw;
   z-index: 1;
-  color: white;
+  color: black;
+}
+.column {
+  display: flex;
+  justify-content: center;
+}
+
+.section {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heading {
   text-align: center;
-}
-.test {
-  height: 100vh;
 }
 #player2 {
   display: flex;
@@ -129,7 +110,6 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  color: white;
   font-size: 1.8rem;
 }
 </style>

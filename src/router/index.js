@@ -11,13 +11,20 @@ import Plan from "../components/views/Introduction/Plan.vue";
 import Employee from "../components/views/Introduction/Employee.vue";
 import Welcome from "@/components/views/Introduction/Welcome.vue";
 import View_History from "@/components/views/Introduction/History.vue";
+import Character from "@/components/views/Introduction/Character.vue";
 
 //views_news
 import Notice from "@/components/views/News/Notice.vue";
+import Article from "@/components/views/News/Article.vue";
 
 //Post Detail
 import PostDetail from "@/components/Board/PostDetail.vue";
 
+import Unsubscribe from "@/components/views/Unsubscribe.vue";
+
+//Support
+import Enquiry from "@/components/views/Support/enquiry.vue";
+import Education from "@/components/views/Support/education.vue";
 Vue.use(VueRouter);
 const introductionRoutes = [
   {
@@ -40,6 +47,11 @@ const introductionRoutes = [
     name: "history",
     component: View_History,
   },
+  {
+    path: "/character",
+    name: "character",
+    component: Character,
+  },
 ];
 
 const productRoutes = [
@@ -56,6 +68,11 @@ const newsRoutes = [
     name: "notice",
     component: Notice,
   },
+  {
+    path: "/article",
+    name: "article",
+    component: Article,
+  },
 ];
 const notFoundHandlingRoutes = [
   {
@@ -65,6 +82,19 @@ const notFoundHandlingRoutes = [
   {
     path: "/404",
     component: NotFound,
+  },
+];
+
+const supportRoutes = [
+  {
+    path: "/support",
+    name: "Support",
+    component: Enquiry,
+  },
+  {
+    path: "/support/education",
+    name: "Education",
+    component: Education,
   },
 ];
 
@@ -78,6 +108,13 @@ const routes = [
   ...introductionRoutes,
   ...newsRoutes,
   ...notFoundHandlingRoutes,
+  ...supportRoutes,
+  {
+    path: "/newsletter/unsubscribe/:email",
+    name: "Unsubscribe",
+    component: Unsubscribe,
+    props: true,
+  },
   {
     path: "/post/:category/:id",
     name: "postDetail",

@@ -21,33 +21,40 @@
       />
       <div class="slogan-group">
         <p>교육이 기술의 발전을<br />따라갈 수 있도록.</p>
-        <Button
-          text="자세히 알아보기"
-          :onClick="pushTo"
-          :params="{ route: '/welcome' }"
-        />
+        <a href="/welcome">
+          <b-button
+            type="is-primary"
+            size="is-medium"
+            rounded
+            style="margin-top: 3vh"
+          >
+            자세히 알아보기
+          </b-button>
+        </a>
       </div>
     </div>
     <b-carousel>
       <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
-        <section :class="`hero is-medium is-${carousel.color}`">
+        <section :class="`hero is-medium ${carousel.color}`">
           <div class="product-area" data-aos="fade">
             <div class="product-text">
-              <p class="product-title">{{ carousel.title }}</p>
-              <p>
+              <p class="title is-2">{{ carousel.title }}</p>
+              <p class="subtitle is-5">
                 {{ carousel.text }}
               </p>
-              <b-button
-                type="is-primary"
-                rounded
-                style="width: 150px; margin-top: 10px"
-                @click="pushTo(carousel.route)"
-                >자세히 알아보기</b-button
-              >
+              <a :href="carousel.route">
+                <b-button
+                  type="is-primary"
+                  rounded
+                  style="width: 150px; margin-top: 3vh"
+                >
+                  자세히 알아보기
+                </b-button>
+              </a>
             </div>
-            <video
+            <img
               class="product-media"
-              :src="require('@/assets/product/h4pay/vid1.mp4')"
+              :src="require(`@/assets/${carousel.image}`)"
             />
           </div>
         </section>
@@ -58,16 +65,17 @@
       <div class="notice-post" v-for="notice in notices" :key="notice.id">
         <SimplePost :post="notice" category="notice" />
       </div>
+      <router-link to="/notice" style="float: right">더 보기</router-link>
     </div>
     <div class="subscribe-area">
       <p class="title is-9">뉴스레터 구독</p>
       <p class="subtitle is-8">COZY의 소식을 이메일로 받아보실 수 있습니다.</p>
       <section class="subscribe-form">
         <b-field style="margin-right: 10px; width: 100%">
-          <b-input type="email" rounded></b-input
+          <b-input type="email" v-model="email" rounded></b-input
         ></b-field>
 
-        <b-button rounded type="is-primary">구독</b-button>
+        <b-button rounded @click="subscribe" type="is-primary">구독</b-button>
       </section>
       <span>
         구독 시 <a @click="modalActive = true">개인정보 수집 및 이용</a>에
@@ -100,16 +108,14 @@
 
 <script>
 import SimplePost from "@/components/Board/SimplePost.vue";
-import Button from "@/components/Button.vue";
 export default {
   components: {
     SimplePost,
-    Button,
   },
   data() {
     return {
       modalActive: false,
-      mail: "",
+      email: "",
       data: [
         {
           purpose: "유한책임회사 코지 뉴스레터 발송",
@@ -128,25 +134,49 @@ export default {
           text: "교내 매점의 온라인 결제 및 예약 시스템을 통해 펜데믹 상황에서도 매점 운영을 원활히 해줍니다.",
           color: "light",
           route: "/product/h4pay",
+          image: "product/h4pay/overview.png",
         },
-        { title: "Slide 2", text: "설명..", color: "light" },
-        { title: "Slide 3", text: "설명22...", color: "success" },
-        { title: "Slide 4", text: "설명333....", color: "warning" },
-        { title: "Slide 5", text: "설명4444...", color: "danger" },
-      ],
-      notices: [
         {
-          id: 0,
-          title: "안녕하세요,",
-          content: "COZY LLC. 홈페이지를 찾아주셔서 감사합니다.",
-          date: "2021-05-23T05:23:00Z",
+          title: "COZY Players",
+          text: "COZY를 대표하는 매력적인 친구들을 만나보세요.",
+          color: "light",
+          route: "/character",
+          image: "character/farrow_hi.png",
         },
       ],
+      notices: [],
     };
   },
   methods: {
     pushTo(param) {
       this.$router.push(param.route);
+    },
+    getNotice() {
+      this.$axios.get(`/api/board/notice`).then((res) => {
+        console.log(res);
+        if (res.status == 200 && res.data.status) {
+          this.notices = res.data.posts.slice(0, 5);
+        }
+      });
+    },
+    subscribe() {
+      if (this.email != "" && this.mailValidate) {
+        this.$axios
+          .post(`/api/mail/subscribe`, { email: this.email })
+          .then((res) => {
+            if (res.status == 200) {
+              alert("구독해주셔서 감사합니다. 양질의 소식을 찾아뵙겠습니다.");
+            } else {
+              alert("죄송합니다, 구독에 실패했습니다.");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("죄송합니다, 오류가 발생했습니다.");
+          });
+      } else {
+        alert("이메일을 올바르게 입력해주세요!");
+      }
     },
   },
   computed: {
@@ -154,9 +184,11 @@ export default {
       const mailReg = new RegExp(
         /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
       );
-      console.log(this.mail);
-      return mailReg.test(this.mail);
+      return mailReg.test(this.email);
     },
+  },
+  created() {
+    this.getNotice();
   },
 };
 </script>
@@ -172,7 +204,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 10vh 20vw;
+  padding: 0 20vw 10vh;
 }
 .subscribe-title {
   font-size: 4.5vh;
@@ -196,16 +228,6 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-.product-media {
-  width: 300px;
-  margin-left: 5vw;
-}
-
-.product-title {
-  font-size: 4.5vh;
-  font-weight: bold;
-}
-
 #app {
   margin: 0px;
 }
@@ -217,12 +239,17 @@ export default {
   bottom: 15vh;
   text-align: center;
 }
+.product-media {
+  height: 300px;
+  width: 300px;
+  object-fit: contain;
+}
 
 @media screen and (max-width: 1023px) {
   .product-area {
     flex-direction: column !important;
     align-items: center !important;
-    padding: 10vh 10vh !important;
+    padding: 10vh 0 !important;
   }
   .product-media {
     margin: 10vh 0;
@@ -234,3 +261,13 @@ export default {
 }
 </style>
 <style lang="sass"></style>
+
+<style scoped>
+@media screen and (max-width: 1023px) {
+  .product-area {
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 10vh 20vw !important;
+  }
+}
+</style>

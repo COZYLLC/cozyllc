@@ -68,7 +68,8 @@ export default {
   methods: {
     setNavbarColor(path) {
       if (path != "/") {
-        window.document.getElementById("navbar").style.background = "black";
+        window.document.getElementById("navbar").style.background =
+          "rgba(0,0,0, 0.4)";
       } else {
         window.document.getElementById("navbar").style.background =
           "transparent";

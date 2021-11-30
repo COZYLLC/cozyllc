@@ -26,3 +26,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 1023px) {
+  .columns {
+    padding: 2vh 10vh;
+  }
+}
+</style>

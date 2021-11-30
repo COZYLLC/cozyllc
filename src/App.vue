@@ -28,6 +28,11 @@ export default {
 .page {
   padding: 102px 20vw;
 }
+@media screen and (max-width: 1023px) {
+  .page {
+    padding: 102px 10vw;
+  }
+}
 </style>
 
 <style lang="scss">
