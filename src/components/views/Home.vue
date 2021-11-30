@@ -152,17 +152,21 @@ export default {
       this.$router.push(param.route);
     },
     getNotice() {
-      this.$axios.get(`/api/board/notice`).then((res) => {
-        console.log(res);
-        if (res.status == 200 && res.data.status) {
-          this.notices = res.data.posts.slice(0, 5);
-        }
-      });
+      this.$axios
+        .get(`${process.env.VUE_APP_API_URL}/board/notice`)
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200 && res.data.status) {
+            this.notices = res.data.posts.slice(0, 5);
+          }
+        });
     },
     subscribe() {
       if (this.email != "" && this.mailValidate) {
         this.$axios
-          .post(`/api/mail/subscribe`, { email: this.email })
+          .post(`${process.env.VUE_APP_API_URL}/mail/subscribe`, {
+            email: this.email,
+          })
           .then((res) => {
             if (res.status == 200) {
               alert("구독해주셔서 감사합니다. 양질의 소식을 찾아뵙겠습니다.");

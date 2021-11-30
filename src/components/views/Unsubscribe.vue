@@ -25,7 +25,9 @@ export default {
   },
   created() {
     this.$axios
-      .post(`/api/mail/unsubscribe`, { email: [this.email] })
+      .post(`${process.env.VUE_APP_API_URL}/mail/unsubscribe`, {
+        email: [this.email],
+      })
       .then((res) => {
         console.log(res);
         if (res.status == 200 && res.data.status) {
