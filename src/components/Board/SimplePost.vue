@@ -1,7 +1,7 @@
 <template>
   <div class="simple-post">
     <div class="post-info">
-      <router-link :to="`/${category.name}/${post.id}/`">{{
+      <router-link :to="`/post/${category.name}/${post.id}/`">{{
         post.title
       }}</router-link>
       <span> {{ getMonthDayDate(post.date) }}</span>
