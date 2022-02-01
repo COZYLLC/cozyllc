@@ -15,7 +15,7 @@
         </div>
       </div>
     </span>
-    <a :href="getImageUrl()">
+    <a :href="getImageUrl()" download>
       <b-button class="is-primary" rounded>캐릭터 배경화면 다운로드</b-button>
     </a>
   </div>
