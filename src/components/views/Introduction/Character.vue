@@ -15,10 +15,19 @@
         </div>
       </div>
     </span>
+    <a :href="getImageUrl()">
+      <b-button class="is-primary">캐릭터 배경화면 다운로드</b-button>
+    </a>
   </div>
 </template>
 <script>
 export default {
+  methods: {
+    getImageUrl() {
+      console.log(`${window.location.origin}/images/wallpaper.jpg`);
+      return `${window.location.origin}/images/wallpaper.jpg`;
+    },
+  },
   data() {
     return {
       characters: [
@@ -69,5 +78,13 @@ export default {
 .product-title {
   font-size: 2.5vh;
   font-weight: bold;
+}
+</style>
+<style scoped>
+.page {
+  text-align: center;
+}
+.product-area {
+  text-align: left;
 }
 </style>
