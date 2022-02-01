@@ -63,7 +63,7 @@
     <div class="notice-area">
       <h1 class="title is-9 notice-title">COZY 소식</h1>
       <div class="notice-post" v-for="notice in notices" :key="notice.id">
-        <SimplePost :post="notice" category="{name:'notice'}" />
+        <SimplePost :post="notice" :category="{ name: 'notice' }" />
       </div>
       <router-link to="/notice" style="float: right">더 보기</router-link>
     </div>
