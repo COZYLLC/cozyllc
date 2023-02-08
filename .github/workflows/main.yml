@@ -27,7 +27,6 @@ jobs:
       with:
         host: ${{ secrets.COZYLLC_HOST }}
         username: ${{ secrets.COZYLLC_USERNAME }}
-        password: ${{ secrets.COZYLLC_PASSWORD }}
         port: ${{ secrets.COZYLLC_PORT }} # default : 22
         key: ${{ secrets.COZYLLC_SSHKEY }}
         script: |
