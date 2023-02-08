@@ -1,9 +1,20 @@
 <template>
   <div>
-    <p>유한책임회사 코지</p>
-    <p>사업자등록번호 : 619-88-02154</p>
-    <p>충청북도 진천군 덕산읍 대하로 114 102동 502호</p>
-    <p>전화문의 : 010-6795-8358</p>
-    <p>이메일 : support@cozyllc.co.kr</p>
+    <p>{info.name}</p>
+    <p>사업자등록번호 : {info.corpno}</p>
+    <p>{info.address}</p>
+    <p>전화문의 : {info.tel}</p>
+    <p>이메일 : {info.email}</p>
   </div>
 </template>
+
+<script>
+import businessInfo from "@/info.json"
+export default {
+  data() {
+    return {
+      info: businessInfo
+    }
+  }
+}
+</script>
