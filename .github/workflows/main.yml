@@ -29,6 +29,7 @@ jobs:
         username: ${{ secrets.COZYLLC_USERNAME }}
         password: ${{ secrets.COZYLLC_PASSWORD }}
         port: ${{ secrets.COZYLLC_PORT }} # default : 22
+        key: ${{ secrets.COZYLLC_SSHKEY }}
         script: |
           cd ${{ secrets.COZYLLC_PATH }}
           git pull https://${{ secrets.COZYLLC_TOKEN }}@github.com/CaffeineHolic/cozyllc.git
