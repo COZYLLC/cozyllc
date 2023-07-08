@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-image">
       <figure class="image 4-by-3" style="padding: 3vw">
-        <img :src="require(`@/assets/employees/${image}`)" />
+        <img :src="require(`@/assets/employees/${image}`)" style="border-radius: 50%;"/>
       </figure>
     </div>
     <div class="card-content">
